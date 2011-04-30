@@ -116,11 +116,6 @@ of the Ovi Maps API.
 
 Creates a new geocoding object.
 
-Accepts an optional B<language> parameter to specify the preferred language
-of the response. The language code is composed of the two-letter ISO-639
-abbreviation and an optional two-letter ISO-3166 country code.  Example
-values: 'en', 'en-US'.
-
 Accepts an optional B<ua> parameter for passing in a custom LWP::UserAgent
 object.
 
@@ -128,6 +123,11 @@ object.
 
     $location = $geocoder->geocode(location => $location)
     @locations = $geocoder->geocode(location => $location)
+
+Accepts an optional B<language> parameter to specify the preferred language
+of the response. The language code is composed of the two-letter ISO-639
+abbreviation and an optional two-letter ISO-3166 country code. Example
+values: 'en', 'en-US'.
 
 In scalar context, this method returns the first location result; and in
 list context it returns all location results.
