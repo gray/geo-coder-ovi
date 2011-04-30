@@ -134,28 +134,28 @@ list context it returns all location results.
 
 Each location result is a hashref; a typical example looks like:
 
-{
-    categories => [ { id => 9000284 } ],
-    properties => {
-        addrAreaotherName => "West Harrison",
-        addrCityName      => "Harrison",
-        addrCountryCode   => "USA",
-        addrCountryName   => "United States of America",
-        addrCountyName    => "Westchester",
-        addrHouseAlpha    => "",
-        addrHouseNumber   => 102,
-        addrPopulation    => 0,
-        addrPostalCode    => 10604,
-        addrStateName     => "New York",
-        addrStreetName    => "Corporate Park Dr",
-        geoLatitude       => "41.01945027709007",
-        geoLongitude      => "-73.72334106825292",
-        language          => "ENG",
-        title =>
-            "102 Corporate Park Dr, Harrison NY 10604, United States of America",
-        type => "Street",
-    },
-}
+    {
+        categories => [ { id => 9000284 } ],
+        properties => {
+            addrAreaotherName => "West Harrison",
+            addrCityName      => "Harrison",
+            addrCountryCode   => "USA",
+            addrCountryName   => "United States of America",
+            addrCountyName    => "Westchester",
+            addrHouseAlpha    => "",
+            addrHouseNumber   => 102,
+            addrPopulation    => 0,
+            addrPostalCode    => 10604,
+            addrStateName     => "New York",
+            addrStreetName    => "Corporate Park Dr",
+            geoLatitude       => "41.01945027709007",
+            geoLongitude      => "-73.72334106825292",
+            language          => "ENG",
+            title =>
+                "102 Corporate Park Dr, Harrison NY 10604, United States of America",
+            type => "Street",
+        },
+    }
 
 =head2 response
 
