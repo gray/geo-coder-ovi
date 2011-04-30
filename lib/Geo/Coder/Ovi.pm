@@ -92,7 +92,7 @@ __END__
 
 =head1 NAME
 
-Geo::Coder::Ovi - Geocode addresses with Ovi Maps
+Geo::Coder::Ovi - Geocode addresses with the Ovi Maps API
 
 =head1 SYNOPSIS
 
@@ -106,7 +106,7 @@ Geo::Coder::Ovi - Geocode addresses with Ovi Maps
 =head1 DESCRIPTION
 
 The C<Geo::Coder::Ovi> module provides an interface to the geocoding service
-of Ovi Maps through the unofficial (as-yet unpublished) REST API.
+of the Ovi Maps API.
 
 =head1 METHODS
 
@@ -173,7 +173,7 @@ Accessor for the UserAgent object.
 
 =head1 SEE ALSO
 
-L<http://maps.ovi.com/>
+L<http://api.maps.ovi.com/>
 
 =head1 REQUESTS AND BUGS
 
