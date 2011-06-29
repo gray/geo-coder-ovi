@@ -4,8 +4,6 @@ use Encode;
 use Geo::Coder::Ovi;
 use Test::More;
 
-plan tests => 8;
-
 my $debug = $ENV{GEO_CODER_OVI_DEBUG};
 unless ($debug) {
     diag "Set GEO_CODER_OVI_DEBUG to see request/response data";
@@ -56,7 +54,9 @@ my $geocoder = Geo::Coder::Ovi->new(
     my $city = decode('latin1', qq(Schm\xF6ckwitz));
     my $location = $geocoder->geocode("$city, Berlin, Germany");
     is(
-        $location->{properties}{addrCityName}, $city,
+        $location->{properties}{addrDistrictName}, $city,
         'decoded character encoding of response'
     );
 }
+
+done_testing;
