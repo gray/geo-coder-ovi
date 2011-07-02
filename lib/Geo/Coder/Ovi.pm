@@ -49,10 +49,10 @@ sub ua {
 sub geocode {
     my ($self, @params) = @_;
     my %params = (@params % 2) ? (location => @params) : @params;
+    my $raw = delete $params{raw};
 
-    while (my ($key, $val) = each %params) {
-        $params{$key} = Encode::encode('utf-8', $val);
-    }
+    $_ = Encode::encode('utf-8', $_) for values %params;
+
     my $location = delete $params{location} or return;
 
     if (my $language = delete $params{language}) {
@@ -76,11 +76,9 @@ sub geocode {
     # HTTP::Message will decode the character encoding.
     $res->content_type('text/plain');
 
-    my $content = $res->decoded_content;
-    return unless $content;
-
-    my $data = eval { from_json($content) };
+    my $data = eval { from_json($res->decoded_content) };
     return unless $data;
+    return $data if $raw;
 
     my @results = @{ $data->{results} || [] };
     return wantarray ? @results : $results[0];
