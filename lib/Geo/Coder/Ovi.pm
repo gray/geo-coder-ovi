@@ -15,6 +15,11 @@ $VERSION = eval $VERSION;
 sub new {
     my ($class, %params) = @_;
 
+    # These will be required at some point in the future.
+    # for (qw(appid token)) {
+    #     croak qq('$_' is required) unless $params{$_};
+    # }
+
     my $self = bless \ %params, $class;
 
     $self->ua(
@@ -59,17 +64,17 @@ sub geocode {
         $params{la} = $language;
     }
 
-    my $uri = URI->new('http://where.desktop.mos.svc.ovi.com/NOSe/json');
+    my $uri = URI->new('http://nose.svc.ovi.com/NOSe/json');
     $uri->query_form(
-        q  => $location,
-        vi => 'where',
-        dv => 'oviMaps',
+        app_id => $self->{appid},
+        token  => $self->{token},
+        q      => $location,
+        vi     => 'where',
+        dv     => 'oviMapsAPI',
         %params,
     );
 
-    my $res = $self->{response} = $self->ua->get(
-        $uri, referer => 'http://maps.ovi.com/'
-    );
+    my $res = $self->{response} = $self->ua->get($uri);
     return unless $res->is_success;
 
     # Change the content type of the response from 'application/json' so
