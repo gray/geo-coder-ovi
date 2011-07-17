@@ -14,6 +14,8 @@ unless ($debug) {
     diag "Set GEO_CODER_OVI_DEBUG to see request/response data";
 }
 
+GOTO:
+
 my $geocoder = Geo::Coder::Ovi->new(
     appid => $ENV{OVI_APPID},
     token => $ENV{OVI_TOKEN},
@@ -63,6 +65,13 @@ my $geocoder = Geo::Coder::Ovi->new(
         $location->{properties}{addrDistrictName}, $city,
         'decoded character encoding of response'
     );
+}
+
+# Test without appid and token.
+if ($ENV{OVI_APPID} and $ENV{OVI_TOKEN}) {
+    delete @ENV{qw(OVI_APPID OVI_TOKEN)};
+    diag 'Testing without appid and token';
+    goto 'GOTO';
 }
 
 done_testing;
