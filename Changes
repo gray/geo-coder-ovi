@@ -1,5 +1,11 @@
 Revision history for Geo-Coder-Ovi
 
+0.03  Wed Jun 29 15:31:39 UTC 2011
+    - Added support for authentication credentials.
+    - Added 'raw' argument to geocode method.
+    - Allowed compression to be used when under debug mode.
+    - Updated documentation.
+
 0.02  Sat Apr 30 00:52:48 UTC 2011
     - Corrected documentation.
     - Disabled compression under debug.
