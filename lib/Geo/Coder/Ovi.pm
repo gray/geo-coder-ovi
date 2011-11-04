@@ -16,9 +16,8 @@ sub new {
     my ($class, %params) = @_;
 
     # These will be required at some point in the future.
-    # for (qw(appid token)) {
-    #     croak qq('$_' is required) unless $params{$_};
-    # }
+    # croak qq('appid' and 'token' are required);
+    #    unless ($params{appid} and $params{token}) {
 
     my $self = bless \ %params, $class;
 
@@ -64,13 +63,15 @@ sub geocode {
         $params{la} = $language;
     }
 
-    my $uri = URI->new('http://nose.svc.ovi.com/NOSe/json');
+    my $uri = URI->new('http://where.desktop.mos.svc.ovi.com/NOSe/json');
     $uri->query_form(
         app_id => $self->{appid},
         token  => $self->{token},
         q      => $location,
         vi     => 'where',
         dv     => 'oviMapsAPI',
+        lat    => 0,
+        lon    => 0,
         %params,
     );
 
@@ -141,10 +142,6 @@ Credentials can be obtained here: L<https://api.developer.nokia.com/ovi-api>
 
 Note: performance and/or access may be limited without credentials.
 
-=item * I<ua>
-
-A custom LWP::UserAgent object. (optional)
-
 =item * I<compress>
 
 Enable compression. (default: 1, unless I<debug> is enabled)
@@ -154,15 +151,16 @@ Enable compression. (default: 1, unless I<debug> is enabled)
 Enable debugging. This prints the headers and content for requests and
 responses. (default: 0)
 
+=item * I<ua>
+
+A custom LWP::UserAgent object. (optional)
+
 =back
 
 =head2 geocode
 
     $location = $geocoder->geocode(location => $location)
     @locations = $geocoder->geocode(location => $location)
-
-In scalar context, this method returns the first location result; and in
-list context it returns all location results.
 
 Accepts the following named arguments:
 
@@ -184,6 +182,9 @@ Returns the raw data structure converted from the response, not split into
 location results. (optional)
 
 =back
+
+In scalar context, this method returns the first location result; and in
+list context it returns all location results.
 
 Example of the data structure representing a location result:
 
